@@ -13,8 +13,10 @@ public class ModifyRegistration extends javax.swing.JPanel {
     /**
      * Creates new form ModifyRegistration
      */
-    public ModifyRegistration() {
+    private MainFrame mainFrame;
+    public ModifyRegistration(MainFrame mainFrame) {
         initComponents();
+        this.mainFrame = mainFrame;
     }
 
     /**

@@ -24,8 +24,10 @@ import models.Room;
 public class RoomMgt extends javax.swing.JPanel {
 
     /** Creates new form RoomMgt */
-    public RoomMgt() {
+    private MainFrame mainFrame;
+    public RoomMgt(MainFrame mainFrame) {
         initComponents();
+        this.mainFrame = mainFrame;
         Query query = Model.getEntityManager().createNamedQuery("getallrooms");
         List<Room> rooms = query.getResultList();
         jComboBox1.removeAllItems();
@@ -62,6 +64,7 @@ public class RoomMgt extends javax.swing.JPanel {
         jComboBox3 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "rez de chaussez", "etage 1", "etage 2", "etage 3" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -83,6 +86,13 @@ public class RoomMgt extends javax.swing.JPanel {
 
         jButton2.setText("Supprimer Lit");
 
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,11 +110,15 @@ public class RoomMgt extends javax.swing.JPanel {
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2))
                 .addContainerGap(190, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addComponent(jLabel17)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,11 +169,19 @@ public class RoomMgt extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        this.mainFrame.closeAll();
+        this.mainFrame.goBack();
+        this.mainFrame.reset();
+    }//GEN-LAST:event_jLabel17MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     // End of variables declaration//GEN-END:variables
 }

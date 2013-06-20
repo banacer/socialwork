@@ -4,7 +4,9 @@
  */
 package GUI;
 
+import java.awt.Container;
 import java.util.Locale;
+import javax.swing.JPanel;
 import models.Model;
 
 /**
@@ -23,17 +25,19 @@ public class MainFrame extends javax.swing.JFrame {
     private SituationComptable situationComptable;
     private RoomMgt roomMgt;
     private reservationMgt reservationMgt;
+    private Container container;
     public MainFrame() {
         initComponents();
         
         //initialize panels
         registerTransaction = new RegisterTransaction(this);
-        dossierMedical      = new DossierMedical();
-        modifyRegistration  = new ModifyRegistration();
-        situationFinJournee = new SituationFinJournee();
-        situationComptable = new SituationComptable();
-        roomMgt = new RoomMgt();
-        reservationMgt = new reservationMgt();
+        dossierMedical      = new DossierMedical(this);
+        modifyRegistration  = new ModifyRegistration(this);
+        situationFinJournee = new SituationFinJournee(this);
+        situationComptable = new SituationComptable(this);
+        roomMgt = new RoomMgt(this);
+        reservationMgt = new reservationMgt(this);
+        container = this.getContentPane();
     }
     public void reset()
     {
@@ -51,6 +55,12 @@ public class MainFrame extends javax.swing.JFrame {
         roomMgt.setVisible(false);
         reservationMgt.setVisible(false);
     }
+    
+    public void goBack()
+    {
+        this.closeAll();
+        this.setContentPane(container);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,7 +73,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -77,13 +86,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem6.setText("jMenuItem6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-        });
 
         jButton5.setText("Situation fin de journee");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -167,28 +169,19 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(0, 832, Short.MAX_VALUE)
-                        .add(jLabel2))
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(jLabel2)
-                .add(18, 18, 18)
+                .add(50, 50, 50)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(0, 314, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        this.reset();
-    }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.closeAll();
@@ -276,7 +269,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
