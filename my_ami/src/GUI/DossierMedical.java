@@ -19,8 +19,10 @@ public class DossierMedical extends javax.swing.JPanel {
     /**
      * Creates new form DossierMedical
      */
-    public DossierMedical() {
+    private MainFrame mainFrame;
+    public DossierMedical(MainFrame mainFrame) {
         initComponents();
+        this.mainFrame = mainFrame;
     }
 
     /**
@@ -50,6 +52,7 @@ public class DossierMedical extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
 
         jLabel7.setText("Profession:");
 
@@ -82,6 +85,13 @@ public class DossierMedical extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -121,43 +131,47 @@ public class DossierMedical extends javax.swing.JPanel {
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 202, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 202, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 61, Short.MAX_VALUE)
+                .add(jLabel17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(15, 15, 15)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel10)
-                            .add(jTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel7)
-                            .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(21, 21, 21)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel1))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel2))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel3)))
-                    .add(layout.createSequentialGroup()
+                        .add(15, 15, 15)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel4))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel5)
-                            .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(18, 18, 18)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel6)
-                            .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel10)
+                                    .add(jTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel7)
+                                    .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(21, 21, 21)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel1))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel2))
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel3)))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(jDateChooser1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jLabel4))
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel5)
+                                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(18, 18, 18)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jLabel6)
+                                    .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                    .add(jLabel17))
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 354, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -196,10 +210,17 @@ public class DossierMedical extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField9KeyReleased
 
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+       this.mainFrame.closeAll();
+       this.mainFrame.goBack();
+       this.mainFrame.reset();
+    }//GEN-LAST:event_jLabel17MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

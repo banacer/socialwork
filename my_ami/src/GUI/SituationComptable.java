@@ -20,8 +20,10 @@ public class SituationComptable extends javax.swing.JPanel {
     /**
      * Creates new form SituationComptable
      */
-    public SituationComptable() {
+    private MainFrame mainFrame;
+    public SituationComptable(MainFrame mainFrame) {
         initComponents();
+        this.mainFrame = mainFrame;
         Date d = new Date(Calendar.getInstance().getTimeInMillis());
         Query q = Model.getEntityManager().createNamedQuery("transactions_today");
         q.setParameter("d", d);
@@ -44,8 +46,16 @@ public class SituationComptable extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
 
         jLabel1.setText("Chiffre d'affaire du jour:");
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -57,19 +67,32 @@ public class SituationComptable extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(526, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(jLabel18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(88, 88, 88)
+                .add(jLabel18)
+                .add(56, 56, 56)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(471, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        this.mainFrame.closeAll();
+        this.mainFrame.goBack();
+        this.mainFrame.reset();
+    }//GEN-LAST:event_jLabel18MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

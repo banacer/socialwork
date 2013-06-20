@@ -23,10 +23,10 @@ public class SituationFinJournee extends javax.swing.JPanel {
     /**
      * Creates new form SituationFinJournee
      */
-    
-    public SituationFinJournee() {
+    private MainFrame mainFrame;
+    public SituationFinJournee(MainFrame mainFrame) {
         initComponents();
-        
+        this.mainFrame = mainFrame;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for(int i = 0; i < model.getRowCount(); i++)
             model.removeRow(i);
@@ -70,6 +70,8 @@ public class SituationFinJournee extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,24 +83,62 @@ public class SituationFinJournee extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel18MouseClicked(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(jLabel18))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(422, 422, 422)
+                    .add(jLabel17)
+                    .addContainerGap(422, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(jLabel18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 535, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(283, 283, 283)
+                    .add(jLabel17)
+                    .addContainerGap(284, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+        this.mainFrame.closeAll();
+        this.mainFrame.goBack();
+        this.mainFrame.reset();
+    }//GEN-LAST:event_jLabel18MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
