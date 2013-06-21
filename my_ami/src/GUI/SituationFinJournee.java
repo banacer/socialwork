@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.swing.table.DefaultTableModel;
 
 import models.Diagnostic;
+import models.Misc;
 import models.Model;
 import models.Transaction;
 
@@ -24,9 +25,11 @@ public class SituationFinJournee extends javax.swing.JPanel {
      * Creates new form SituationFinJournee
      */
     private MainFrame mainFrame;
+     List<Transaction> list;
     public SituationFinJournee(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
+        list = null;
         update();
     }
 
@@ -38,7 +41,7 @@ public class SituationFinJournee extends javax.swing.JPanel {
         Date d = new Date(Calendar.getInstance().getTimeInMillis());
         Query q = Model.getEntityManager().createNamedQuery("transactions_today");
         q.setParameter("d", d);
-        List<Transaction> list = q.getResultList();
+        list = q.getResultList();
         for(Transaction tr: list)
         {
             String[] row = new String[9];
@@ -76,6 +79,7 @@ public class SituationFinJournee extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,12 +105,20 @@ public class SituationFinJournee extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Imprimer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(jButton1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jLabel18))
             .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -118,7 +130,9 @@ public class SituationFinJournee extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(jLabel18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jLabel18)
+                    .add(jButton1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 535, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -140,7 +154,16 @@ public class SituationFinJournee extends javax.swing.JPanel {
         this.mainFrame.reset();
     }//GEN-LAST:event_jLabel18MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println("size: "+list.size());
+        if(list != null && list.size() > 0)
+        {
+            Misc.printTransactions(list);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JScrollPane jScrollPane1;
