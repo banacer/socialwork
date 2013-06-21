@@ -34,10 +34,11 @@ public class RoomSelector extends javax.swing.JPanel {
     private Accompagnateur accompagnateur;
     private String medecinTraitant;
     private String diagnostic;
-    private boolean accompagnateur_selected;    
+    private boolean accompagnateur_selected;  
+    private MainFrame mainFrame;
 
     
-    public RoomSelector(Patient patient, Accompagnateur accompagnateur, boolean accompagnateur_selected, String medecinTraitant, String diagnostic) {
+    public RoomSelector(Patient patient, Accompagnateur accompagnateur, boolean accompagnateur_selected, String medecinTraitant, String diagnostic,MainFrame mainFrame) {
         
         initComponents();
         this.accompagnateur_selected = accompagnateur_selected;
@@ -48,6 +49,7 @@ public class RoomSelector extends javax.swing.JPanel {
         //roomList = new ArrayList<>();
         this.medecinTraitant = medecinTraitant;
         this.diagnostic = diagnostic;
+        this.mainFrame = mainFrame;
         
         Query query = Model.getEntityManager().createNamedQuery("getallrooms");
         List<Room> rooms = query.getResultList();        
@@ -160,6 +162,7 @@ public class RoomSelector extends javax.swing.JPanel {
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
 
         jLabel1.setText("Veuillez choisir la date d'enregistrement:");
 
@@ -278,6 +281,13 @@ public class RoomSelector extends javax.swing.JPanel {
             }
         });
 
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,11 +326,15 @@ public class RoomSelector extends javax.swing.JPanel {
                 .add(28, 28, 28)
                 .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 143, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(75, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(jLabel20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .add(jLabel20)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 10, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 71, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
@@ -483,6 +497,12 @@ public class RoomSelector extends javax.swing.JPanel {
             }         
         }     
     }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+        this.mainFrame.closeAll();
+        this.mainFrame.goBack();
+        this.mainFrame.reset();
+    }//GEN-LAST:event_jLabel20MouseClicked
     
     
     
@@ -501,7 +521,10 @@ public class RoomSelector extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
