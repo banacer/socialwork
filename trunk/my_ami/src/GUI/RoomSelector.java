@@ -4,9 +4,17 @@
  */
 package GUI;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.sql.Date;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Query;
 import javax.sound.midi.SysexMessage;
 import models.*;
@@ -17,6 +25,8 @@ import models.*;
  */
 public class RoomSelector extends javax.swing.JPanel {
 
+    
+
     /**
      * Creates new form RoomSelector
      */
@@ -24,7 +34,8 @@ public class RoomSelector extends javax.swing.JPanel {
     private Accompagnateur accompagnateur;
     private String medecinTraitant;
     private String diagnostic;
-    private boolean accompagnateur_selected;
+    private boolean accompagnateur_selected;    
+
     
     public RoomSelector(Patient patient, Accompagnateur accompagnateur, boolean accompagnateur_selected, String medecinTraitant, String diagnostic) {
         
@@ -382,6 +393,7 @@ public class RoomSelector extends javax.swing.JPanel {
         
         Transaction t = new Transaction(patient, dateEntree, dateSortiePatient, accompagnateur, dateEntree, dateSortieAccompagnateur, "Normal",sejour,sejourAccompagnateur);
         t.save();
+        Misc.printTransaction(t);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -470,10 +482,10 @@ public class RoomSelector extends javax.swing.JPanel {
                 jComboBox3.addItem(b.getNumber());
             }         
         }     
-        
-
     }//GEN-LAST:event_jComboBox2ItemStateChanged
-
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

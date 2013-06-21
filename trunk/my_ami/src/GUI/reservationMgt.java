@@ -10,10 +10,16 @@
  */
 package GUI;
 
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.Query;
+import models.Accompagnateur;
+import models.Bed;
+import models.Misc;
 import models.Model;
+import models.Patient;
 import models.Room;
+import models.Sejour;
 import models.Transaction;
 
 /**
@@ -24,9 +30,14 @@ public class reservationMgt extends javax.swing.JPanel {
 
     /** Creates new form reservationMgt */
     private MainFrame mainFrame;
+    private Transaction t;
+    
     public reservationMgt(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
+        this.t = null;  
+        
+        
     }
 
     /** This method is called from within the constructor to
@@ -92,6 +103,11 @@ public class reservationMgt extends javax.swing.JPanel {
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Annuler reservation");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Enregistrer");
 
@@ -208,24 +224,24 @@ public class reservationMgt extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField2)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 11, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,12 +295,21 @@ public class reservationMgt extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try
         {
-            Transaction t = Model.getEntityManager().find(Transaction.class, Integer.parseInt(jTextField1.getText()));
+            t = Model.getEntityManager().find(Transaction.class, Integer.parseInt(jTextField1.getText()));
+            if(t == null)
+                return;
             jTextField2.setText(t.getPatient().getFullName());
             if(t.getAccompagnateur() == null)
+            {
                 this.jPanel1.setVisible(false);
+                
+            }
             else
+            {
                 this.jPanel1.setVisible(true);
+                
+            }
+                
             
             if(t.getAccompagnateur() != null)
                 jTextField3.setText(t.getAccompagnateur().getFullName());
@@ -349,6 +374,7 @@ public class reservationMgt extends javax.swing.JPanel {
         catch(Exception e)
         {
             e.printStackTrace();
+            this.t = null;
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -358,6 +384,12 @@ public class reservationMgt extends javax.swing.JPanel {
         this.mainFrame.goBack();
         this.mainFrame.reset();
     }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        t.setTransactionType("Annulation");
+        t.setSomme(0);
+        t.update();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

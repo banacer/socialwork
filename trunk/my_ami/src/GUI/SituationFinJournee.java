@@ -27,6 +27,11 @@ public class SituationFinJournee extends javax.swing.JPanel {
     public SituationFinJournee(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
+        update();
+    }
+
+    public void update()
+    {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for(int i = 0; i < model.getRowCount(); i++)
             model.removeRow(i);
@@ -58,7 +63,6 @@ public class SituationFinJournee extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

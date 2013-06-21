@@ -19,8 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private RegisterTransaction registerTransaction;
-    private DossierMedical dossierMedical;
-    private ModifyRegistration modifyRegistration;
+    private DossierMedical dossierMedical;    
     private SituationFinJournee situationFinJournee;
     private SituationComptable situationComptable;
     private RoomMgt roomMgt;
@@ -31,8 +30,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         //initialize panels
         registerTransaction = new RegisterTransaction(this);
-        dossierMedical      = new DossierMedical(this);
-        modifyRegistration  = new ModifyRegistration(this);
+        dossierMedical      = new DossierMedical(this);        
         situationFinJournee = new SituationFinJournee(this);
         situationComptable = new SituationComptable(this);
         roomMgt = new RoomMgt(this);
@@ -48,8 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
     {
         jPanel1.setVisible(false);
         registerTransaction.setVisible(false);
-        dossierMedical.setVisible(false);
-        modifyRegistration.setVisible(false);
+        dossierMedical.setVisible(false);        
         situationFinJournee.setVisible(false);
         situationComptable.setVisible(false);
         roomMgt.setVisible(false);
@@ -205,12 +202,14 @@ public class MainFrame extends javax.swing.JFrame {
         this.closeAll();
         this.setContentPane(situationFinJournee);
         situationFinJournee.setVisible(true);
+        situationFinJournee.update();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.closeAll();
         this.setContentPane(situationComptable);
         situationComptable.setVisible(true);
+        situationComptable.update();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

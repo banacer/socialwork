@@ -24,6 +24,12 @@ public class SituationComptable extends javax.swing.JPanel {
     public SituationComptable(MainFrame mainFrame) {
         initComponents();
         this.mainFrame = mainFrame;
+        update();
+    }
+    
+    public void update()
+    {
+        
         Date d = new Date(Calendar.getInstance().getTimeInMillis());
         Query q = Model.getEntityManager().createNamedQuery("transactions_today");
         q.setParameter("d", d);
