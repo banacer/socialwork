@@ -8,6 +8,7 @@ package models;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 import javax.persistence.*;
 
 /**
@@ -157,6 +158,75 @@ public class Transaction extends Model{
      */
     public SejourAccompagnateur getSejourAccompagnateur() {
         return sejourAccompagnateur;
+    }
+
+    /**
+     * @param somme the somme to set
+     */
+    public void setSomme(int somme) {
+        this.somme = somme;
+    }
+
+    /**
+     * @param sejour the sejour to set
+     */
+    public void setSejour(Sejour sejour) {
+        this.sejour = sejour;
+    }
+
+    /**
+     * @param sejourAccompagnateur the sejourAccompagnateur to set
+     */
+    public void setSejourAccompagnateur(SejourAccompagnateur sejourAccompagnateur) {
+        this.sejourAccompagnateur = sejourAccompagnateur;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Transaction other = (Transaction) obj;
+        if (!Objects.equals(this.patient, other.patient)) {
+            return false;
+        }
+        if (!Objects.equals(this.pDateDentree, other.pDateDentree)) {
+            return false;
+        }
+        if (!Objects.equals(this.pDateSortie, other.pDateSortie)) {
+            return false;
+        }
+        if (!Objects.equals(this.accompagnateur, other.accompagnateur)) {
+            return false;
+        }
+        if (!Objects.equals(this.aDateDentree, other.aDateDentree)) {
+            return false;
+        }
+        if (!Objects.equals(this.aDateSortie, other.aDateSortie)) {
+            return false;
+        }
+        if (!Objects.equals(this.transactionType, other.transactionType)) {
+            return false;
+        }
+        if (this.somme != other.somme) {
+            return false;
+        }
+        if (!Objects.equals(this.sejour, other.sejour)) {
+            return false;
+        }
+        if (!Objects.equals(this.sejourAccompagnateur, other.sejourAccompagnateur)) {
+            return false;
+        }
+        return true;
     }
     
 }

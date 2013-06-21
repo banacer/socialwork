@@ -7,6 +7,7 @@ package models;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -123,6 +124,39 @@ public class Patient extends User{
      */
     public List<Diagnostic> getDiagnostic() {
         return diagnostic;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Patient other = (Patient) obj;
+        if (!Objects.equals(this.situationFamiliale, other.situationFamiliale)) {
+            return false;
+        }
+        if (this.nombreDenfants != other.nombreDenfants) {
+            return false;
+        }
+        if (!Objects.equals(this.profession, other.profession)) {
+            return false;
+        }
+        if (!Objects.equals(this.addresse, other.addresse)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroPatient, other.numeroPatient)) {
+            return false;
+        }
+        return true;
     }
     
     

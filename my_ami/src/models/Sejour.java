@@ -6,6 +6,7 @@
 package models;
 
 import java.sql.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -178,6 +179,48 @@ public class Sejour extends Model{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sejour other = (Sejour) obj;
+        if (!Objects.equals(this.patient, other.patient)) {
+            return false;
+        }
+        if (!Objects.equals(this.bed, other.bed)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateDentree, other.dateDentree)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateSortie, other.dateSortie)) {
+            return false;
+        }
+        if (this.nombreJours != other.nombreJours) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.sommePaye) != Double.doubleToLongBits(other.sommePaye)) {
+            return false;
+        }
+        if (!Objects.equals(this.observation, other.observation)) {
+            return false;
+        }
+        if (!Objects.equals(this.sejourAccompagnateur, other.sejourAccompagnateur)) {
+            return false;
+        }
+        return true;
     }
     
     

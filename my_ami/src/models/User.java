@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Date;
+import java.util.Objects;
 import javax.persistence.*;
 
 /**
@@ -37,11 +38,14 @@ public class User extends Model{
     }
 
     public String getCIN() {
-        return CIN;
+        if(CIN != null)
+            return CIN;
+        else
+            return "";
     }
 
     public void setCIN(String CIN) {
-        this.CIN = CIN;
+        this.CIN = CIN;        
     }
 
     public Date getDateOfBirth() {
@@ -77,7 +81,37 @@ public class User extends Model{
     }
     public String getFullName()
     {
-        return firstName+" "+lastName;
+        return firstName.toUpperCase()+" "+lastName.toUpperCase();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.CIN, other.CIN)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
+            return false;
+        }
+        return true;
     }
     
 
