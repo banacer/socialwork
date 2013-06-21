@@ -350,7 +350,7 @@ public class RegisterTransaction extends javax.swing.JPanel {
             }
         }
 
-        RoomSelector roomSelector = new RoomSelector(patient, accompagnateur, jCheckBox1.isSelected(),jTextField7.getText(),jTextField8.getText());
+        RoomSelector roomSelector = new RoomSelector(patient, accompagnateur, jCheckBox1.isSelected(),jTextField7.getText(),jTextField8.getText(),mainFrame);
         this.mainFrame.closeAll();
         this.mainFrame.setContentPane(roomSelector);
         roomSelector.setVisible(true);
